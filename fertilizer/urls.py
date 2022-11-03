@@ -20,5 +20,6 @@ from fertilizer.views import HomeView
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('blog/', include('blog.urls')),
+    path('board/', include('borameboard.urls')),
     path('',HomeView.as_view(), name='home'),
 ]
