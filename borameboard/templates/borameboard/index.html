@@ -21,11 +21,15 @@
                 {% for post in board_list %}
                 <tr>
                     <td>{{ forloop.revcounter }}</td>
-                    <td><a href="{%url 'borame_board:detail'post.id%}">{{ post.title}}</a></td>
-                    <td>{{ post.author }}</td>
+                    <td><a href="{% url 'borame_board:detail' post.id %}">{{ post.title }}</a></td>
+                    <td width="100">{{ post.author }}</td>
                     <td>{{ post.content|truncatewords:5 }}</td>
                     <td>{{ post.published_date|date:"Y-m-d" }}</td>
-                    <td><a href="{%url 'borame_board:delete'post.id%}">onclick="if(!confirm('정말 삭제하시겠습니까?')){return false;}"class="btn btn-outline-danger btn-sm">삭제</a></td>
+                    <td width="120">
+                        <a href="{% url 'borame_board:edit' post.id%}"class="btn btn-outline-info btn-sm">수정</a>
+                        <a href="{% url 'borame_board:delete' post.id %}"onclick="if(!confirm('정말 삭제하시겠습니까?')){return false;}"
+                        class="btn btn-outline-danger btn-sm">삭제</a>
+                    </td>
                 </tr>
                 {% endfor %}
             </tbody>
