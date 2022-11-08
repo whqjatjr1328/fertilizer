@@ -35,9 +35,31 @@
             </tbody>
         </table>
     </div>
+    <div class='row'>
+        <div class="col-md-12 ">
+            <a href="{ url 'boramem_board:regist' %}" class="btn btn-outline-secondary">글 등록</a>
+        </div>
+    </div>
+
+    <!-- 페이징 처리-->
+    <div class "row my-3">
+        <div class="col-md-12 text-center">
+            {% if board_list.has_previous %}
+                <a href="?page=1">처음</a>
+                <a href="?page={{ board_list.previous_page_number }}">이전</a>
+            {% endif %}
+                <!-- 페이지리스트-->
+                <span style="color:red;font-weight:bold;">{{ baord_list.number }}</span>
+                <span> / </span>
+                <span style="font-wight:bold;">{{ board_list.paginator.num_pages }}</span>
+            {% if board_list.has_next %}
+                <a href="?page={{ board_list.next_page_number }}">다음</a>
+                <a href="?page={{ board_list.paginator.num_pages }}">끝</a>
+            {% endif %}
+        
+        </div>
+    </div>
 </div>
-<div style="padding: 2px 20px; float:right;">
-    <a href="{%url 'borame_board:regist' %}" class = "btn-primary">글 등록</a>
-</div>
+
 {% endblock %}
     

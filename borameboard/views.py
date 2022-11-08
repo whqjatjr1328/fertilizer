@@ -3,11 +3,18 @@ from django.shortcuts import render,redirect, get_object_or_404
 # Create your views here.
 from .models import Board
 from .forms import RegistForm
+from django.core.paginator import Paginator
 
 def index(request) :
-    board_list = Board.objects.all().order_by('-id')
-    context = {'board_list' : board_list}
+    page = request.GET.get('page', '1')
+    board_list = Board.objects.order_by('-id')
+    
+    paginator = Paginator(board_list, 10)
+    page_obj = paginator.get_page(page)
+    
+    context = {'board_list': page_obj}
     return render(request, 'borameboard/index.html', context)
+    
 
 def regist(request) :
     if request.method == 'POST':
